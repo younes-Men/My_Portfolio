@@ -189,12 +189,9 @@ const Home = () => {
                 whileTap={{ scale: 0.95 }}
                 className={`flex items-center space-x-3 border rounded-xl px-6 py-4 hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300 cursor-pointer ${tech.color}`}
               >
-                <motion.div
-                  animate={{ rotate: [0, 360] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                >
+                <div className="inline-block">
                   {tech.icon}
-                </motion.div>
+                </div>
                 <span className="text-sm font-semibold">{tech.name}</span>
               </motion.div>
             ))}

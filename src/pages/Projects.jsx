@@ -1,10 +1,12 @@
 import React from "react";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { ExternalLink, Github, ArrowRight, Sparkles, Code, Database, Palette } from "lucide-react";
 import Project1 from "../images/project1.jpg";
 import Project2 from "../images/project2.jpg";
 import Project3 from "../images/Project3.jpg";
+import Projetc4 from "../images/Project4.jpg";
+import Project5 from "../images/Project5.jpg"
 
 const Projects = () => {
   const [ref, inView] = useInView({ threshold: 0.1 });
@@ -16,7 +18,7 @@ const Projects = () => {
         "A comprehensive web application for managing support tickets, allowing users to create, track, and resolve issues efficiently. Built with the MERN stack, featuring user authentication, role-based access, and a responsive interface.",
       image: Project1,
       technologies: ["React", "MongoDB", "Tailwind", "Express.js", "Node.js"],
-      liveUrl: "https://ticket-management-system-nine.vercel.app/login",
+      liveUrl: "https://ticket-management-system-lxzp.vercel.app",
       githubUrl: "#",
       category: "Full Stack",
       icon: <Database className="w-5 h-5" />,
@@ -26,7 +28,7 @@ const Projects = () => {
       description:
         "A smart chatbot built with the MERN stack and integrated with the OpenAI API, capable of understanding user queries and providing intelligent, context-aware responses. Features include user-friendly interface and real-time communication.",
       image: Project2,
-      technologies: ["React", "Express.js", "Node.js", "OpenAI API", "Socket.io"],
+      technologies: ["React", "Express.js", "Node.js", "OpenAI API"],
       liveUrl: "#",
       githubUrl: "#",
       category: "AI Integration",
@@ -37,12 +39,35 @@ const Projects = () => {
       description:
         "A modern MERN stack e-commerce platform for selling dried fruits, featuring product listing, shopping cart, payment integration, and responsive design for a seamless shopping experience.",
       image: Project3,
-      technologies: ["React", "Node.js", "Tailwind", "MongoDB", "Stripe"],
+      technologies: ["React", "Node.js", "Tailwind", "MongoDB"],
       liveUrl: "https://ecommerce-tou-fakya.vercel.app/",
       githubUrl: "#",
       category: "E-commerce",
       icon: <Palette className="w-5 h-5" />,
     },
+    {
+      title: "NewBiz | CRM",
+      description:
+        "A modern CRM platform , enabling advanced company search by SIRET, phone number, sector, with data export and an intuitive, responsive interface. " ,
+      image: Projetc4,
+      technologies: ["React", "Node.js", "Tailwind", "SupaBase" , "Express.js"],
+      liveUrl: "https://www.courtierformation.com/",
+      githubUrl: "#",
+      category: "CRM System",
+      icon: <Palette className="w-5 h-5" />,
+    },
+    {
+      title: "Cabinet system | Cabinet Dr Benmoro",
+      description:
+        "A full-stack medical management system built to handle patient data, appointments, and medical records, role-based access, and a modern responsive dashboard." ,
+      image: Project5,
+      technologies: ["React", "Node.js", "Tailwind", "SupaBase" , "Express.js"],
+      liveUrl: "https://system-cabinet-medical.vercel.app/",
+      githubUrl: "#",
+      category: "Cabinet system",
+      icon: <Palette className="w-5 h-5" />,
+    },
+
   ];
 
   const containerVariants = {
@@ -80,37 +105,6 @@ const Projects = () => {
     },
   };
 
-  // simple tilt effect per card
-  const TiltCard = ({ children }) => {
-    const x = useMotionValue(0)
-    const y = useMotionValue(0)
-    const rotateX = useTransform(y, [-50, 50], [8, -8])
-    const rotateY = useTransform(x, [-50, 50], [-8, 8])
-
-    function handleMouseMove(e) {
-      const rect = e.currentTarget.getBoundingClientRect()
-      const px = e.clientX - rect.left
-      const py = e.clientY - rect.top
-      x.set(px - rect.width / 2)
-      y.set(py - rect.height / 2)
-    }
-
-    function handleMouseLeave() {
-      x.set(0); y.set(0)
-    }
-
-    return (
-      <motion.div
-        style={{ perspective: 1000 }}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-      >
-        <motion.div style={{ rotateX, rotateY }} transition={{ type: 'spring', stiffness: 150, damping: 12 }}>
-          {children}
-        </motion.div>
-      </motion.div>
-    )
-  }
 
   return (
     <div className="min-h-screen pt-32 pb-12 relative overflow-hidden">
@@ -160,138 +154,141 @@ const Projects = () => {
               <motion.div
                 key={index}
                 variants={cardVariants}
-                whileHover={{ y: -10, transition: { duration: 0.3 }}}
-                className="group"
+                className="flex"
               >
-                <TiltCard>
-                <div className="bg-gray-800/40 border border-gray-700/50 rounded-3xl overflow-hidden hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-500 backdrop-blur-sm hover:border-purple-500/30 h-full">
+                <motion.div 
+                  className="bg-gray-800/40 border border-gray-700/50 rounded-xl overflow-hidden backdrop-blur-sm h-full flex flex-col w-full transition-all duration-300"
+                  whileHover={{ 
+                    scale: 1.02,
+                    borderColor: "rgba(147, 51, 234, 0.3)",
+                    boxShadow: "0 10px 40px rgba(147, 51, 234, 0.1)"
+                  }}
+                >
                   {/* Project Image */}
-                  <div className="relative h-64 overflow-hidden">
-                    <motion.img
+                  <div className="relative h-48 overflow-hidden flex-shrink-0">
+                    <img
                       src={project.image || "/placeholder.svg"}
                       alt={project.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.3 }}
-                    />
-                    
-                    {/* Overlay */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      initial={{ opacity: 0 }}
-                      whileHover={{ opacity: 1 }}
+                      className="w-full h-full object-cover"
                     />
                     
                     {/* Category Badge */}
-                    <motion.div
-                      className="absolute top-4 left-4 flex items-center space-x-2 bg-gray-800/80 backdrop-blur-sm border border-gray-600/50 rounded-full px-3 py-1.5"
-                      whileHover={{ scale: 1.05 }}
-                    >
+                    <div className="absolute top-3 left-3 flex items-center space-x-2 bg-gray-800/80 backdrop-blur-sm border border-gray-600/50 rounded-full px-2.5 py-1">
                       {project.icon}
                       <span className="text-xs font-medium text-gray-300">{project.category}</span>
-                    </motion.div>
+                    </div>
 
                     {/* Action Buttons Overlay */}
-                    <motion.div
-                      className="absolute bottom-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      initial={{ opacity: 0 }}
-                      whileHover={{ opacity: 1 }}
-                    >
-                      <motion.a
+                    <div className="absolute bottom-3 right-3 flex space-x-2">
+                      <a
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-purple-600 hover:bg-purple-700 text-white p-2 rounded-full transition-colors duration-300"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
+                        className="bg-purple-600 text-white p-2 rounded-full"
                       >
                         <ExternalLink className="w-4 h-4" />
-                      </motion.a>
+                      </a>
                       
                       {project.githubUrl && project.githubUrl !== "#" && (
-                        <motion.a
+                        <a
                           href={project.githubUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="bg-gray-700 hover:bg-gray-600 text-white p-2 rounded-full transition-colors duration-300"
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.9 }}
+                          className="bg-gray-700 text-white p-2 rounded-full"
                         >
                           <Github className="w-4 h-4" />
-                        </motion.a>
+                        </a>
                       )}
-                    </motion.div>
+                    </div>
                   </div>
 
                   {/* Project Content */}
-                  <div className="p-8">
-                    <motion.h3 
-                      className="text-2xl font-bold text-white mb-4 group-hover:text-purple-400 transition-colors duration-300"
-                      whileHover={{ x: 5 }}
+                  <div className="p-5 flex flex-col flex-grow">
+                    <h3 
+                      className="text-xl font-bold text-white mb-3"
                     >
                       {project.title}
-                    </motion.h3>
+                    </h3>
                     
-                    <motion.p 
-                      className="text-gray-400 leading-relaxed mb-6 text-base"
-                      variants={itemVariants}
+                    <p 
+                      className="text-gray-400 leading-relaxed mb-4 text-sm flex-grow"
                     >
                       {project.description}
-                    </motion.p>
+                    </p>
 
                     {/* Technologies */}
-                    <motion.div 
-                      className="flex flex-wrap gap-3 mb-8"
-                      variants={itemVariants}
+                    <div 
+                      className="flex flex-wrap gap-2 mb-5"
                     >
                       {project.technologies.map((tech, techIndex) => (
-                        <motion.span
+                        <span
                           key={techIndex}
-                          className="bg-gray-700/50 text-gray-300 px-3 py-1.5 rounded-lg text-sm font-medium border border-gray-600/50 hover:border-purple-500/50 transition-colors duration-300"
-                          whileHover={{ scale: 1.05 }}
-                          initial={{ opacity: 0, scale: 0 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ delay: techIndex * 0.1 }}
+                          className="bg-gray-700/50 text-gray-300 px-2 py-1 rounded-md text-xs font-medium border border-gray-600/50"
                         >
                           {tech}
-                        </motion.span>
+                        </span>
                       ))}
-                    </motion.div>
+                    </div>
 
                     {/* Action Buttons */}
-                    <motion.div 
-                      className="flex gap-4"
-                      variants={itemVariants}
+                    <div 
+                      className="flex gap-3 mt-auto relative"
                     >
-                      <motion.a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 flex items-center justify-center space-x-2 group"
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
+                      <motion.div
+                        className="relative flex-1"
+                        initial="initial"
+                        whileHover="hover"
                       >
-                        <span>View Live</span>
-                        <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-                      </motion.a>
+                        <motion.a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold py-2.5 px-4 rounded-lg transition-all duration-300 flex items-center justify-center space-x-2 text-sm relative z-10 block"
+                          variants={{
+                            initial: {},
+                            hover: {}
+                          }}
+                        >
+                          <span>View Live</span>
+                          <ArrowRight className="w-3 h-3" />
+                        </motion.a>
+                        
+                        {/* Preview Image on Hover */}
+                        <motion.div
+                          className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 z-20 pointer-events-none"
+                          variants={{
+                            initial: { opacity: 0, y: 10, scale: 0.9 },
+                            hover: { opacity: 1, y: 0, scale: 1 }
+                          }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <div className="bg-gray-900 border border-purple-500/50 rounded-lg p-2 shadow-2xl">
+                            <img
+                              src={project.image || "/placeholder.svg"}
+                              alt={project.title}
+                              className="w-64 h-40 object-cover rounded-md"
+                            />
+                            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
+                              <div className="w-4 h-4 bg-gray-900 border-r border-b border-purple-500/50 transform rotate-45"></div>
+                            </div>
+                          </div>
+                        </motion.div>
+                      </motion.div>
 
                       {project.githubUrl && project.githubUrl !== "#" && (
-                        <motion.a
+                        <a
                           href={project.githubUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex-1 bg-gray-700/50 hover:bg-gray-600 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 flex items-center justify-center space-x-2 group"
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
+                          className="flex-1 bg-gray-700/50 text-white font-semibold py-2.5 px-4 rounded-lg transition-all duration-300 flex items-center justify-center space-x-2 text-sm"
                         >
-                          <Github className="w-4 h-4" />
+                          <Github className="w-3 h-3" />
                           <span>GitHub</span>
-                        </motion.a>
+                        </a>
                       )}
-                    </motion.div>
+                    </div>
                   </div>
-                </div>
-                </TiltCard>
+                </motion.div>
               </motion.div>
             ))}
           </motion.div>
