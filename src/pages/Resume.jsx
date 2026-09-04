@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { Download, Sparkles, Code, GraduationCap, Briefcase, User, Award, Globe, ChevronRight } from "lucide-react"
 import MyImage from "../images/My_image.png"
+import cvPdf from "../YOUNES MENSOUB CV.pdf"
 
 const Resume = () => {
   const [activeSection, setActiveSection] = useState("Education")
@@ -35,7 +36,7 @@ const Resume = () => {
 
   const experience = [
     {
-      year: "Dec 2025 – Present",
+      year: "Dec 2025 – July 2026",
       title: "Lykos Conseils – Responsable Technique",
       subtitle: "Développement de systèmes d'acquisition et de gestion des leads (Full-Stack)",
       description: "Leading the technical development of internal systems that streamline the lead generation process for the team. Built automated pipelines to collect and qualify inbound leads, and designed a centralized database to track, manage, and analyze all leads handled by the company — improving team efficiency and data visibility across the organization.",
@@ -210,15 +211,7 @@ const Resume = () => {
                         {exp.icon}
                         <div className="text-purple-400 font-medium">{exp.year}</div>
                       </div>
-                      {exp.current && (
-                        <span className="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-green-500/15 text-green-400 border border-green-500/30">
-                          <span className="relative flex h-2 w-2">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                          </span>
-                          Present
-                        </span>
-                      )}
+                      
                     </div>
                     <h3 className="text-xl font-bold text-white mb-2">{exp.title}</h3>
                     <p className="text-gray-300 mb-3 font-medium">{exp.subtitle}</p>
@@ -481,7 +474,7 @@ const Resume = () => {
               className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-3 rounded-xl font-semibold hover:from-purple-700 hover:to-blue-700 transition-all duration-300 flex items-center space-x-3 mx-auto"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => window.open('/CV.pdf', '_blank')}
+              onClick={() => window.open(cvPdf, '_blank')}
             >
               <Download className="w-5 h-5" />
               <span>Download CV</span>
