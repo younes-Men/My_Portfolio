@@ -133,7 +133,7 @@ const Home = () => {
               </p>
               
               <motion.h1 
-                className="text-7xl md:text-9xl font-bold text-white leading-tight"
+                className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-bold text-white leading-tight"
                 variants={itemVariants}
               >
                 <span className="bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent">
@@ -149,7 +149,7 @@ const Home = () => {
               </motion.h1>
               
               <motion.h2 
-                className="text-3xl md:text-4xl text-gray-400 font-medium"
+                className="text-2xl sm:text-3xl md:text-4xl text-gray-400 font-medium"
                 variants={itemVariants}
               >
                 Fullstack Developer
@@ -157,7 +157,7 @@ const Home = () => {
             </motion.div>
 
             <motion.p 
-              className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
+              className="text-base sm:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
               variants={itemVariants}
             >
               I'm specialized in{" "}

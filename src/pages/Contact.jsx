@@ -167,7 +167,7 @@ const Contact = () => {
             </motion.div>
             
             <motion.h1 
-              className="text-6xl md:text-7xl font-bold text-white mb-8"
+              className="text-4xl sm:text-6xl md:text-7xl font-bold text-white mb-8"
               variants={itemVariants}
             >
               Let's{" "}
